@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BureauZero | Government forms, filled and fixed for you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f5f2;--card:#fff;--ink:#14231b;--mut:#55655c;--g:#0f5132;--g2:#e1efe6;--s:#f28c28;--s2:#fdeedb;--line:#d5ded8;--red:#b3261e;--red2:#fde9e7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.55}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;margin:0;line-height:1.1;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--s);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:rgba(242,245,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;text-decoration:none}
+.mark{width:32px;height:32px;border-radius:8px;background:var(--g);color:#fff;display:grid;place-items:center;font-size:13px;border-bottom:4px solid var(--s)}
+.bar nav a{margin-left:22px;text-decoration:none;font-weight:600;color:var(--mut)}
+.bar nav a:hover{color:var(--g)}
+
+.btn{display:inline-block;border:0;border-radius:10px;padding:13px 22px;font:600 16px 'Source Sans 3',sans-serif;cursor:pointer;text-decoration:none;transition:background .15s}
+.btn-p{background:var(--g);color:#fff}.btn-p:hover{background:#0a3d25}
+.btn-o{background:transparent;color:var(--g);border:2px solid var(--g)}.btn-o:hover{background:var(--g2)}
+.btn:disabled{opacity:.6;cursor:wait}
+
+/* hero */
+.hero{min-height:calc(100vh - 60px);display:flex;align-items:center;padding:48px 0}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,76px);font-weight:800}
+.hero p.lead{font-size:20px;color:var(--mut);max-width:34em;margin:22px 0 32px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.fix{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 14px 40px rgba(15,81,50,.10)}
+.fix h3{font-size:15px;color:var(--mut);font-weight:500;margin-bottom:14px}
+.fix .row{border-radius:10px;padding:14px 16px;font-size:15px}
+.fix .no{background:var(--red2);color:var(--red);border:1px solid #f1b8b3}
+.fix .ok{background:var(--g2);color:var(--g);border:1px solid #b5d6c3}
+.fix code{font-family:ui-monospace,Consolas,monospace;font-weight:700;font-size:16px}
+.fix .no code{text-decoration:line-through}
+.fix .arrow{text-align:center;margin:8px 0;color:var(--s);font-weight:800;font-size:13px}
+
+/* features */
+.feats{padding:96px 0;background:var(--card);border-block:1px solid var(--line)}
+.feats h2{font-size:clamp(30px,4vw,46px);max-width:14em;margin-bottom:48px}
+.f{display:grid;grid-template-columns:260px 1fr;gap:32px;padding:30px 0;border-top:2px solid var(--ink)}
+.f:nth-child(odd){border-top-color:var(--s)}
+.f h3{font-size:24px}
+.f p{margin:0;color:var(--mut);font-size:18px;max-width:38em}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.go{padding:80px 0;text-align:center}
+.go h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:12px}
+.go p{color:var(--mut);margin:0 0 26px}
+
+/* dashboard */
+.dash{padding:56px 0 80px;background:var(--bg)}
+.dh{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.dh h2{font-size:34px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--g2);color:var(--g);border-radius:99px;padding:6px 14px;font-weight:600;font-size:14px}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--g);animation:p 1.6s infinite}
+@keyframes p{50%{opacity:.3}}
+.grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) minmax(0,3.4fr);gap:20px;align-items:start}
+.col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.pn{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.pn h3{font-size:19px;margin-bottom:4px}
+.pn .sub{color:var(--mut);font-size:14px;margin:0 0 14px}
+.th{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.th h3{margin:0}
+.tag{font-size:13px;background:var(--s2);color:#8a4b00;padding:2px 10px;border-radius:99px;white-space:nowrap}
+.lnk{background:none;border:0;color:var(--g);font:600 14px 'Source Sans 3';cursor:pointer;text-decoration:underline;padding:0}
+input[type=file]{width:100%;font-size:14px;margin-bottom:12px}
+input[type=file]::file-selector-button{background:var(--g);color:#fff;border:0;border-radius:8px;padding:9px 16px;margin-right:12px;font:600 14px 'Source Sans 3';cursor:pointer}
+.fs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fs label{display:block;font-size:13px;color:var(--mut);margin-bottom:3px}
+.fs input{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;font:16px 'Source Sans 3';background:#fbfcfb;color:var(--ink)}
+.fs input:focus{border-color:var(--g)}
+.fs .w{grid-column:1/-1}
+.fs .dob{border-color:var(--s);background:var(--s2);font-family:ui-monospace,Consolas,monospace}
+.btns{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.btns .btn{width:100%;text-align:center}
+.view{height:300px;background:#eef2ef;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;overflow:hidden}
+.view img{width:100%;height:100%;object-fit:contain}
+.view.empty{color:var(--mut);padding:20px;text-align:center;font-size:14px}
+.hidden{display:none!important}
+#currentUrlBadge{font:13px ui-monospace,Consolas,monospace;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%}
+#reasoningTerminal{background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:12px;max-height:340px;overflow-y:auto;font:13px/1.5 ui-monospace,Consolas,monospace;display:flex;flex-direction:column;gap:8px}
+#reasoningTerminal div{border-left:3px solid var(--g);padding-left:10px;overflow-wrap:anywhere}
+#reasoningTerminal b{color:var(--g)}
+#reasoningTerminal .warn{border-color:var(--s);color:#8a4b00}#reasoningTerminal .warn b{color:#b35f00}
+#reasoningTerminal .ok{color:var(--g)}
+#reasoningTerminal .err{border-color:var(--red);color:var(--red)}#reasoningTerminal .err b{color:var(--red)}
+#reasoningTerminal .mut{border-color:var(--line);color:var(--mut)}
+#reasoningTerminal .trace-active{background:var(--g2);border-radius:5px;padding-top:4px;padding-bottom:4px}
+.trace-timeline{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity}
+.trace-step{position:relative;flex:0 0 220px;min-height:112px;text-align:left;background:#fbfcfb;border:1px solid var(--line);border-radius:10px;padding:13px 14px 12px 18px;color:var(--ink);font:14px/1.4 'Source Sans 3',sans-serif;cursor:pointer;scroll-snap-align:start}
+.trace-step:before{content:"";display:block;width:9px;height:9px;border-radius:50%;background:#aab8af;margin-bottom:9px;box-shadow:0 0 0 4px var(--g2)}
+.trace-step[aria-current="step"]{border-color:var(--g);background:var(--g2);box-shadow:0 0 0 1px var(--g)}
+.trace-step .trace-label{display:block;color:var(--g);font-weight:700;margin-bottom:4px}
+.trace-step .trace-copy{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:var(--mut);overflow-wrap:anywhere}
+.trace-controls{display:grid;grid-template-columns:auto minmax(80px,1fr) auto auto;align-items:center;gap:10px;margin:8px 0 12px}
+.trace-controls button{border:1px solid var(--line);border-radius:8px;background:#fff;padding:7px 12px;color:var(--g);font:600 14px 'Source Sans 3',sans-serif;cursor:pointer}
+.trace-controls button:disabled{opacity:.45;cursor:not-allowed}
+.trace-controls input{width:100%;accent-color:var(--g)}
+.trace-position{font:12px ui-monospace,Consolas,monospace;color:var(--mut);white-space:nowrap}
+.rc{border-top:4px solid var(--g)}
+#activeReceiptBox{background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:14px;font:13px/1.6 ui-monospace,Consolas,monospace;overflow-wrap:anywhere;color:var(--mut)}
+#activeReceiptBox .vf{color:var(--g);font-weight:700;margin-bottom:6px}
+#activeReceiptBox pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;color:var(--ink)}
+#ledgerList{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto;font-size:14px}
+.li{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fbfcfb;overflow-wrap:anywhere}
+.li .id{font:700 13px ui-monospace,Consolas,monospace;color:var(--g)}
+.li .st{display:inline-block;margin:6px 0;font-size:12px;background:var(--g2);color:var(--g);padding:2px 9px;border-radius:99px;overflow-wrap:anywhere}
+.li .nm{font-weight:600}.li .nm span,.li .sc{color:var(--mut);font-weight:400}
+.li .h{font:11px ui-monospace,Consolas,monospace;color:var(--mut);margin-top:4px}
+.foot{padding:28px 0;text-align:center;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
+
+@media(max-width:1040px){.grid{grid-template-columns:1fr}}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr;gap:36px}.hero{min-height:0}.f{grid-template-columns:1fr;gap:8px}.bar nav a.h2l{display:none}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark">B0</span>BureauZero</a>
+    <nav><a class="h2l" href="#features">How it works</a><a href="#dashboard">Dashboard</a></nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Government forms, filled and fixed for you.</h1>
+      <p class="lead">BureauZero reads your ID or certificate, opens the government portal, fills in every field, and corrects the mistakes the portal rejects. You get a signed receipt at the end.</p>
+      <div class="cta">
+        <a class="btn btn-p" href="#dashboard">Open dashboard</a>
+        <a class="btn btn-o" href="#features">See how it works</a>
+      </div>
+    </div>
+    <div class="fix" aria-label="Example of an automatic correction">
+      <h3>What happens when a portal rejects a date</h3>
+      <div class="row no">Portal error 422: invalid date of birth <code>2004-08-15</code>. This portal needs DD/MM/YYYY.</div>
+      <div class="arrow">The agent reads the error and rewrites the value</div>
+      <div class="row ok">Date of birth accepted: <code>15/08/2004</code></div>
+    </div>
+  </div>
+</section>
+
+<section class="feats" id="features">
+  <div class="wrap">
+    <h2>Four jobs the agent does so you don't have to</h2>
+    <div class="f rv"><h3>Reads your documents</h3><p>Upload a citizen ID, income certificate or caste certificate. Gemini pulls out your name, date of birth, state, category and income, and suggests a scheme that fits.</p></div>
+    <div class="f rv"><h3>Finds schemes on myScheme</h3><p>Use the dashboard discovery button to enter age, gender and state in the live myScheme finder and see matching schemes with links. The legacy portal agent remains available separately.</p></div>
+    <div class="f rv"><h3>Fixes rejected forms</h3><p>If the portal turns an entry down, the agent reads the error message, corrects the value and submits again, instead of stopping and asking you to start over.</p></div>
+    <div class="f rv"><h3>Keeps a receipt trail</h3><p>Each submission is saved with its receipt ID and SHA-256 signature, so you can look up what was filed and when.</p></div>
+  </div>
+</section>
+
+<section class="go">
+  <div class="wrap">
+    <h2>Ready to file an application?</h2>
+    <p>Upload a document or edit the details by hand, then start the agent.</p>
+    <a class="btn btn-p" href="#dashboard">Go to the dashboard</a>
+  </div>
+</section>
+
+<section class="dash" id="dashboard">
+  <div class="wrap">
+    <div class="dh">
+      <h2>Dashboard</h2>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <a class="lnk" href="/gov-portal/apply" target="_blank" rel="noopener">View the target portal</a>
+        <span class="chip"><i></i>Engine online</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="col">
+        <div class="pn">
+          <div class="th"><h3>1. Upload a document</h3><span class="tag">Read by Gemini</span></div>
+          <p class="sub">Choose an ID or certificate (image or PDF) and the details fill in below.</p>
+          <input type="file" id="docInput" accept="image/*,.pdf">
+          <button onclick="extractDocument()" id="extractBtn" class="btn btn-o" style="width:100%">Extract citizen details</button>
+        </div>
+
+        <div class="pn">
+          <div class="th"><h3>2. Check the details</h3><button class="lnk" onclick="injectObstacleTrap()">Use the wrong date format</button></div>
+          <div class="fs">
+            <div class="w"><label for="p_fullName">Full name</label><input id="p_fullName" type="text" value="Aayush Raj"></div>
+            <div><label for="p_dob">Date of birth (test value)</label><input id="p_dob" class="dob" type="text" value="2004-08-15"></div>
+            <div><label for="p_age">Age</label><input id="p_age" type="number" value="22"></div>
+            <div><label for="p_gender">Gender</label><input id="p_gender" type="text" value="Male"></div>
+            <div><label for="p_state">Domicile state</label><input id="p_state" type="text" value="Assam"></div>
+            <div><label for="p_category">Category</label><input id="p_category" type="text" value="General"></div>
+            <div><label for="p_income">Annual income (INR)</label><input id="p_income" type="number" value="145000"></div>
+            <div class="w"><label for="p_scheme">Welfare scheme</label><input id="p_scheme" type="text" value="National Post-Matric Merit Scholarship"></div>
+            <div class="w"><label for="p_idNum">Government ID or certificate number</label><input id="p_idNum" type="text" value="IND-AS-2026-88412"></div>
+          </div>
+          <div class="btns">
+            <button onclick="dispatchAgent('spring_legacy_portal')" id="launchBtn" class="btn btn-p">Start the portal agent</button>
+            <button onclick="dispatchAgent('myscheme_live_discovery')" id="discBtn" class="btn btn-o">Find schemes on myScheme.gov.in</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="pn">
+          <div class="th"><h3>Agent browser replay</h3><span id="currentUrlBadge">Waiting for the agent to start</span></div>
+          <div class="view empty" id="viewportPlaceholder">Screenshots from the agent's browser appear here, step by step.</div>
+          <div class="view hidden" id="viewWrap"><img id="browserViewportImg" alt="Latest screenshot from the agent's browser"></div>
+        </div>
+        <div class="pn hidden" id="tracePanel">
+          <div class="th"><h3>Step timeline</h3><span class="trace-position" id="tracePosition" aria-live="polite">No steps</span></div>
+          <div class="trace-controls" aria-label="Trace playback controls">
+            <button type="button" id="tracePrev" aria-label="Previous step" disabled>← Prev</button>
+            <input type="range" id="traceScrubber" min="0" max="0" value="0" aria-label="Choose agent step" disabled>
+            <button type="button" id="tracePlay" disabled>Play</button>
+            <button type="button" id="traceNext" aria-label="Next step" disabled>Next →</button>
+          </div>
+          <div class="trace-timeline" id="traceTimeline" aria-label="Agent steps"></div>
+        </div>
+        <div class="pn">
+          <div class="th"><h3>Agent log</h3><span id="stepCounter" style="color:var(--mut);font-size:14px">0 steps</span></div>
+          <div id="reasoningTerminal"><div class="mut">Ready. The agent log shows each step, including any errors it fixes.</div></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="pn rc">
+          <h3>3. Receipt</h3>
+          <p class="sub">Appears when the portal accepts the form.</p>
+          <div id="activeReceiptBox"><p style="margin:0">No submission yet. Start the portal agent to get a signed receipt.</p></div>
+        </div>
+        <div class="pn">
+          <div class="th"><h3>Past applications</h3><button class="lnk" onclick="refreshLedger()">Refresh</button></div>
+          <div id="ledgerList"><p style="color:var(--mut);margin:0">Loading saved applications…</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">BureauZero: autonomous public-service form filling</footer>
+
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let agentTrace = [];
+let activeTraceIndex = 0;
+let tracePlaybackTimer = null;
+
+function logTerminal(tag, message, cls = "") {
+  const term = document.getElementById("reasoningTerminal");
+  const div = document.createElement("div");
+  if (cls) div.className = cls;
+  div.innerHTML = `<b>[${esc(tag)}]</b> ${esc(message)}`;
+  term.appendChild(div);
+  term.scrollTop = term.scrollHeight;
+}
+
+function stopTracePlayback() {
+  if (tracePlaybackTimer !== null) clearInterval(tracePlaybackTimer);
+  tracePlaybackTimer = null;
+  const button = document.getElementById("tracePlay");
+  if (button) { button.innerText = "Play"; button.setAttribute("aria-label", "Play trace"); }
+}
+
+function renderTraceStep(index) {
+  if (!agentTrace.length) return;
+  activeTraceIndex = Math.max(0, Math.min(index, agentTrace.length - 1));
+  const step = agentTrace[activeTraceIndex];
+  const image = document.getElementById("browserViewportImg");
+  if (step.screenshot) {
+    image.src = `data:image/png;base64,${step.screenshot}`;
+    image.alt = `Browser screenshot for step ${step.step ?? activeTraceIndex + 1}`;
+    document.getElementById("viewWrap").classList.remove("hidden");
+    document.getElementById("viewportPlaceholder").classList.add("hidden");
+  } else {
+    document.getElementById("viewWrap").classList.add("hidden");
+    document.getElementById("viewportPlaceholder").classList.remove("hidden");
+    document.getElementById("viewportPlaceholder").innerText = "No screenshot was captured for this step.";
+  }
+  document.getElementById("currentUrlBadge").innerText = step.url || "URL unavailable";
+  document.getElementById("tracePosition").innerText = `Step ${activeTraceIndex + 1} of ${agentTrace.length}`;
+  document.getElementById("traceScrubber").value = activeTraceIndex;
+  document.getElementById("tracePrev").disabled = activeTraceIndex === 0;
+  document.getElementById("traceNext").disabled = activeTraceIndex === agentTrace.length - 1;
+  document.querySelectorAll(".trace-step").forEach((card, i) => {
+    if (i === activeTraceIndex) card.setAttribute("aria-current", "step");
+    else card.removeAttribute("aria-current");
+  });
+  const card = document.querySelectorAll(".trace-step")[activeTraceIndex];
+  if (card) card.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+  const terminal = document.getElementById("reasoningTerminal");
+  terminal.querySelectorAll(".trace-active").forEach(item => item.classList.remove("trace-active"));
+  const logEntry = [...terminal.children].find(item => item.dataset.traceIndex === String(activeTraceIndex));
+  if (logEntry) { logEntry.classList.add("trace-active"); logEntry.scrollIntoView({ block: "nearest" }); }
+}
+
+function showAgentTrace(traces) {
+  stopTracePlayback();
+  agentTrace = Array.isArray(traces) ? traces : [];
+  activeTraceIndex = 0;
+  const panel = document.getElementById("tracePanel");
+  const timeline = document.getElementById("traceTimeline");
+  timeline.innerHTML = "";
+  document.getElementById("stepCounter").innerText = `${agentTrace.length} steps`;
+  if (!agentTrace.length) { panel.classList.add("hidden"); return; }
+  panel.classList.remove("hidden");
+  document.getElementById("traceScrubber").max = String(agentTrace.length - 1);
+  document.getElementById("traceScrubber").disabled = false;
+  document.getElementById("tracePlay").disabled = agentTrace.length < 2;
+  document.getElementById("tracePrev").disabled = true;
+  document.getElementById("traceNext").disabled = agentTrace.length < 2;
+  agentTrace.forEach((step, index) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "trace-step";
+    card.setAttribute("aria-label", `Step ${step.step ?? index + 1}: ${step.reasoning || "Agent action"}`);
+    card.innerHTML = `<span class="trace-label">Step ${esc(step.step ?? index + 1)}</span><span class="trace-copy">${esc(step.reasoning || "No reasoning provided.")}</span>`;
+    card.addEventListener("click", () => { stopTracePlayback(); renderTraceStep(index); });
+    timeline.appendChild(card);
+
+    const reasoning = (step.reasoning || "").toLowerCase();
+    const isFix = reasoning.includes("error") || reasoning.includes("obstacle") || reasoning.includes("self-correction");
+    const entry = document.createElement("div");
+    entry.className = `${isFix ? "warn " : ""}trace-log-entry`;
+    entry.dataset.traceIndex = String(index);
+    entry.innerHTML = `<b>[STEP ${esc(step.step ?? index + 1)}]</b> ${esc(step.reasoning || "No reasoning provided.")}`;
+    document.getElementById("reasoningTerminal").appendChild(entry);
+  });
+  renderTraceStep(0);
+}
+
+document.getElementById("tracePrev").addEventListener("click", () => { stopTracePlayback(); renderTraceStep(activeTraceIndex - 1); });
+document.getElementById("traceNext").addEventListener("click", () => { stopTracePlayback(); renderTraceStep(activeTraceIndex + 1); });
+document.getElementById("traceScrubber").addEventListener("input", event => { stopTracePlayback(); renderTraceStep(Number(event.target.value)); });
+document.getElementById("tracePlay").addEventListener("click", () => {
+  if (tracePlaybackTimer !== null) { stopTracePlayback(); return; }
+  if (activeTraceIndex >= agentTrace.length - 1) renderTraceStep(0);
+  const button = document.getElementById("tracePlay");
+  button.innerText = "Pause";
+  button.setAttribute("aria-label", "Pause trace");
+  tracePlaybackTimer = setInterval(() => {
+    if (activeTraceIndex >= agentTrace.length - 1) { stopTracePlayback(); return; }
+    renderTraceStep(activeTraceIndex + 1);
+  }, 1800);
+});
+
+function injectObstacleTrap() {
+  document.getElementById("p_dob").value = "2004-08-15";
+  logTerminal("TEST SET", "Date of birth is now 2004-08-15. The portal needs DD/MM/YYYY, so watch the agent get rejected and fix it.", "warn");
+}
+
+async function extractDocument() {
+  const fileInput = document.getElementById("docInput");
+  if (!fileInput.files.length) { alert("Choose an ID or certificate image or PDF first."); return; }
+  const btn = document.getElementById("extractBtn");
+  btn.innerText = "Reading document with Gemini…";
+  btn.disabled = true;
+  logTerminal("READING", "Sending the document to Spring Boot and the Gemini extractor.");
+  const formData = new FormData();
+  formData.append("file", fileInput.files[0]);
+  try {
+    const res = await fetch("/api/v1/ingest-document", { method: "POST", body: formData });
+    const data = await res.json();
+    const p = data.profile;
+    document.getElementById("p_fullName").value = p.fullName || "";
+    document.getElementById("p_dob").value = p.dob || "2004-08-15";
+    document.getElementById("p_age").value = p.age || 21;
+    document.getElementById("p_gender").value = p.gender || "Male";
+    document.getElementById("p_state").value = p.domicileState || "Assam";
+    document.getElementById("p_category").value = p.socialCategory || "General";
+    document.getElementById("p_income").value = p.annualIncome || 120000;
+    document.getElementById("p_scheme").value = p.recommendedScheme || "National Post-Matric Merit Scholarship";
+    document.getElementById("p_idNum").value = p.citizenIdNumber || "IND-DOC-88412";
+    logTerminal("EXTRACTED", `Details read for ${p.fullName} (ID: ${p.citizenIdNumber})`, "ok");
+  } catch (err) {
+    logTerminal("READ FAILED", err.message, "err");
+  } finally {
+    btn.innerText = "Extract citizen details";
+    btn.disabled = false;
+  }
+}
+
+async function dispatchAgent(mode) {
+  const profile = {
+    fullName: document.getElementById("p_fullName").value,
+    dob: document.getElementById("p_dob").value,
+    age: parseInt(document.getElementById("p_age").value || "21"),
+    gender: document.getElementById("p_gender").value,
+    domicileState: document.getElementById("p_state").value,
+    socialCategory: document.getElementById("p_category").value,
+    annualIncome: parseInt(document.getElementById("p_income").value || "120000"),
+    recommendedScheme: document.getElementById("p_scheme").value,
+    citizenIdNumber: document.getElementById("p_idNum").value
+  };
+  const btns = [document.getElementById("launchBtn"), document.getElementById("discBtn")];
+  const label = btns.map(b => b.innerText);
+  btns.forEach(b => b.disabled = true);
+  document.getElementById("launchBtn").innerText = "Agent running in Chromium…";
+  stopTracePlayback();
+  document.getElementById("reasoningTerminal").innerHTML = "";
+  showAgentTrace([]);
+  document.getElementById("currentUrlBadge").innerText = "Waiting for the agent to start";
+  document.getElementById("viewWrap").classList.add("hidden");
+  document.getElementById("viewportPlaceholder").classList.remove("hidden");
+  document.getElementById("viewportPlaceholder").innerText = "Screenshots from the agent's browser appear here, step by step.";
+  logTerminal("STARTED", `Launching the browser agent (${mode}).`);
+
+  try {
+    const res = await fetch("/api/v1/dispatch-agent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ profile: profile, target_mode: mode })
+    });
+    const data = await res.json();
+    const traces = data.agent_reasoning_trace || [];
+    showAgentTrace(traces);
+
+    const completed = data.status === "COMPLETED";
+    const schemes = Array.isArray(data.schemes) ? data.schemes : [];
+    const schemeList = schemes.map(item => {
+      let href = "";
+      try {
+        const url = new URL(item.url);
+        if (url.protocol === "https:" && url.hostname === "www.myscheme.gov.in") href = url.href;
+      } catch (_) {}
+      return `<li>${href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(item.name)}</a>` : esc(item.name)}</li>`;
+    }).join("");
+    document.getElementById("activeReceiptBox").innerHTML =
+      `<div class="vf">${completed ? "COMPLETED" : "NOT COMPLETED"}</div><pre>${esc(data.final_receipt_summary || data.detail || "The agent returned no result summary.")}</pre>${schemeList ? `<ul>${schemeList}</ul>` : ""}`;
+    if (completed && mode !== "myscheme_live_discovery") await refreshLedger();
+    if (!completed) logTerminal("RUN FAILED", data.detail || data.final_receipt_summary || "The agent could not complete the request.", "err");
+  } catch (e) {
+    logTerminal("RUN FAILED", e.message, "err");
+  } finally {
+    btns.forEach((b, i) => { b.innerText = label[i]; b.disabled = false; });
+    document.getElementById("launchBtn").innerText = "Start the portal agent";
+  }
+}
+
+async function refreshLedger() {
+  const box = document.getElementById("ledgerList");
+  try {
+    const res = await fetch("/api/v1/registry-ledger");
+    const items = await res.json();
+    if (!items.length) { box.innerHTML = `<p style="color:var(--mut);margin:0">No applications saved yet.</p>`; return; }
+    box.innerHTML = items.reverse().map(i => `
+      <div class="li">
+        <div class="id">${esc(i.receiptId)}</div>
+        <div class="st">${esc(i.status)}</div>
+        <div class="nm">${esc(i.fullName)} <span>(${esc(i.domicileState)})</span></div>
+        <div class="sc">${esc(i.schemeName)}</div>
+        <div class="h">SHA-256: ${esc(i.cryptographicHash)}</div>
+      </div>`).join("");
+  } catch (e) { console.error(e); }
+}
+
+// reveal feature rows on scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .2 });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+refreshLedger();
+</script>
+</body>
+</html>
